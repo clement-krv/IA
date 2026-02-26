@@ -26,11 +26,11 @@ description: "Task list for QR-Text Local-First implementation"
 
 **Purpose**: Project initialization and basic file structure
 
-- [ ] T001 [P] [SETUP] Create `index.html` with semantic HTML5 structure (viewport meta, no inline scripts/styles)
-- [ ] T002 [P] [SETUP] Create `styles.css` with CSS variables for theming (light/dark modes, colors, spacing)
-- [ ] T003 [P] [SETUP] Download Nayuki QR Code generator library to `lib/qrcodegen.js` (minified version)
-- [ ] T004 [P] [SETUP] Create `package.json` for build scripts (optional minification, Lighthouse CI, Playwright)
-- [ ] T005 [P] [SETUP] Create `.github/workflows/lighthouse.yml` for CI performance testing
+- [x] T001 [P] [SETUP] Create `index.html` with semantic HTML5 structure (viewport meta, no inline scripts/styles)
+- [x] T002 [P] [SETUP] Create `styles.css` with CSS variables for theming (light/dark modes, colors, spacing)
+- [x] T003 [P] [SETUP] Download Nayuki QR Code generator library to `lib/qrcodegen.js` (minified version)
+- [x] T004 [P] [SETUP] Create `package.json` for build scripts (optional minification, Lighthouse CI, Playwright)
+- [x] T005 [P] [SETUP] Create `.github/workflows/lighthouse.yml` for CI performance testing
 
 **Checkpoint**: After T001-T005, you should be able to serve `index.html` and see a blank page.
 
@@ -44,16 +44,16 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T101 [US1] Create `app.js` with module structure (imports, state initialization, main function)
-- [ ] T102 [US1] Add textarea element to `index.html` with auto-focus attribute
-- [ ] T103 [US1] Add QR code container (div or svg) to `index.html` below textarea
-- [ ] T104 [US1] Create `qr-generator.js` module with `generateQR(text, options)` function wrapping Nayuki library
-- [ ] T105 [US1] Implement SVG rendering in `qr-generator.js` (use Nayuki's `toSvgString()` method)
-- [ ] T106 [US1] Add Quiet Zone (4 modules) to SVG via `viewBox` offset calculation in `qr-generator.js`
-- [ ] T107 [US1] Connect textarea `input` event to QR generation in `app.js` (debounce 50ms)
-- [ ] T108 [US1] Style textarea in `styles.css` (prominent card layout, centered, responsive)
-- [ ] T109 [US1] Style QR code container in `styles.css` (white background, shadow, centered below textarea)
-- [ ] T110 [US1] Test Time-to-Interactive < 500ms using Lighthouse (run `lhci autorun`)
+- [x] T101 [US1] Create `app.js` with module structure (imports, state initialization, main function)
+- [x] T102 [US1] Add textarea element to `index.html` with auto-focus attribute
+- [x] T103 [US1] Add QR code container (div or svg) to `index.html` below textarea
+- [x] T104 [US1] Create `qr-generator.js` module with `generateQR(text, options)` function wrapping Nayuki library
+- [x] T105 [US1] Implement SVG rendering in `qr-generator.js` (use Nayuki's `toSvgString()` method)
+- [x] T106 [US1] Add Quiet Zone (4 modules) to SVG via `viewBox` offset calculation in `qr-generator.js`
+- [x] T107 [US1] Connect textarea `input` event to QR generation in `app.js` (debounce 50ms)
+- [x] T108 [US1] Style textarea in `styles.css` (prominent card layout, centered, responsive)
+- [x] T109 [US1] Style QR code container in `styles.css` (white background, shadow, centered below textarea)
+- [x] T110 [US1] Test Time-to-Interactive < 500ms using Lighthouse (run `lhci autorun`)
 
 **Checkpoint**: After T101-T110, you should have a working text → QR code generator.
 
@@ -67,17 +67,17 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T201 [P] [US2] Add character counter element to `index.html` (e.g., `<span id="counter">0 / 2000</span>`)
-- [ ] T202 [P] [US2] Add progress bar element to `index.html` (HTML5 `<progress>` or styled div)
-- [ ] T203 [US2] Add warning message container to `index.html` (hidden by default)
-- [ ] T204 [US2] Implement `updateCounter(length)` function in `app.js` to update counter text
-- [ ] T205 [US2] Implement `updateProgressBar(percent)` function in `app.js` to update progress bar width/value
-- [ ] T206 [US2] Implement `getWarningLevel(length)` function in `app.js` returning 'none' | 'soft' | 'hard'
-- [ ] T207 [US2] Show yellow warning when length > 2000 ("Scannability may degrade with long text")
-- [ ] T208 [US2] Show red warning when length > 5000 ("Hard limit reached. Consider reducing text.")
-- [ ] T209 [US2] Style counter in `styles.css` (positioned near textarea, monospace font)
-- [ ] T210 [US2] Style progress bar in `styles.css` (linear gradient: green → yellow → red)
-- [ ] T211 [US2] Style warning messages in `styles.css` (yellow/red backgrounds, appropriate contrast)
+- [x] T201 [P] [US2] Add character counter element to `index.html` (e.g., `<span id="counter">0 / 2000</span>`)
+- [x] T202 [P] [US2] Add progress bar element to `index.html` (HTML5 `<progress>` or styled div)
+- [x] T203 [US2] Add warning message container to `index.html` (hidden by default)
+- [x] T204 [US2] Implement `updateCounter(length)` function in `app.js` to update counter text
+- [x] T205 [US2] Implement `updateProgressBar(percent)` function in `app.js` to update progress bar width/value
+- [x] T206 [US2] Implement `getWarningLevel(length)` function in `app.js` returning 'none' | 'soft' | 'hard'
+- [x] T207 [US2] Show yellow warning when length > 2000 ("Scannability may degrade with long text")
+- [x] T208 [US2] Show red warning when length > 5000 ("Hard limit reached. Consider reducing text.")
+- [x] T209 [US2] Style counter in `styles.css` (positioned near textarea, monospace font)
+- [x] T210 [US2] Style progress bar in `styles.css` (linear gradient: green → yellow → red)
+- [x] T211 [US2] Style warning messages in `styles.css` (yellow/red backgrounds, appropriate contrast)
 
 **Checkpoint**: After T201-T211, character counter and progress bar should update in real-time.
 
@@ -91,16 +91,16 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T301 [P] [US3] Add "Save Image" button to `index.html` below QR code
-- [ ] T302 [P] [US3] Add "Share" button to `index.html` next to Save button
-- [ ] T303 [US3] Create `share-handler.js` module with `saveImage(svgElement)` function
-- [ ] T304 [US3] Implement PNG generation from SVG in `share-handler.js` (use Canvas API + `toBlob()`)
-- [ ] T305 [US3] Implement download trigger using `<a download="qr-code.png">` trick or Blob URL
-- [ ] T306 [US3] Implement Web Share API check in `share-handler.js` (`navigator.share && navigator.canShare()`)
-- [ ] T307 [US3] Call `navigator.share({ files: [pngFile] })` when Share button clicked
-- [ ] T308 [US3] Disable/hide Share button if Web Share API not supported (add tooltip "Not supported")
-- [ ] T309 [US3] Style Save/Share buttons in `styles.css` (primary action buttons, hover states)
-- [ ] T310 [US3] Ensure minimum PNG size is 512x512 pixels (resize if needed in `share-handler.js`)
+- [x] T301 [P] [US3] Add "Save Image" button to `index.html` below QR code
+- [x] T302 [P] [US3] Add "Share" button to `index.html` next to Save button
+- [x] T303 [US3] Create `share-handler.js` module with `saveImage(svgElement)` function
+- [x] T304 [US3] Implement PNG generation from SVG in `share-handler.js` (use Canvas API + `toBlob()`)
+- [x] T305 [US3] Implement download trigger using `<a download="qr-code.png">` trick or Blob URL
+- [x] T306 [US3] Implement Web Share API check in `share-handler.js` (`navigator.share && navigator.canShare()`)
+- [x] T307 [US3] Call `navigator.share({ files: [pngFile] })` when Share button clicked
+- [x] T308 [US3] Disable/hide Share button if Web Share API not supported (add tooltip "Not supported")
+- [x] T309 [US3] Style Save/Share buttons in `styles.css` (primary action buttons, hover states)
+- [x] T310 [US3] Ensure minimum PNG size is 512x512 pixels (resize if needed in `share-handler.js`)
 - [ ] T311 [US3] Verify zero network calls in DevTools when Save/Share clicked (SC-018 validation)
 
 **Checkpoint**: After T301-T311, Save and Share buttons should work without network calls.
@@ -115,19 +115,19 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T401 [P] [US4] Add CSS media query `@media (prefers-color-scheme: dark)` in `styles.css`
-- [ ] T402 [P] [US4] Define CSS variables for light theme (--bg-color, --text-color, --card-bg, etc.)
-- [ ] T403 [P] [US4] Define CSS variables for dark theme inside media query
-- [ ] T404 [US4] Add settings button (gear icon ⚙️) to `index.html` (positioned top-right corner)
-- [ ] T405 [US4] Add settings modal/dropdown to `index.html` (hidden by default)
-- [ ] T406 [US4] Add theme selector to settings: Radio buttons for Light/Dark/System
-- [ ] T407 [US4] Add QR error correction selector: Radio buttons for L/M/Q/H
-- [ ] T408 [US4] Create `theme-manager.js` module with `setTheme(mode)` function
-- [ ] T409 [US4] Implement `data-theme` attribute toggle on `<html>` element in `theme-manager.js`
-- [ ] T410 [US4] Connect theme selector change event to `setTheme()` in `app.js`
-- [ ] T411 [US4] Update `qr-generator.js` to accept `errorCorrectionLevel` parameter
-- [ ] T412 [US4] Connect error correction selector to QR regeneration in `app.js`
-- [ ] T413 [US4] Style settings modal in `styles.css` (popup overlay, radio buttons, labels)
+- [x] T401 [P] [US4] Add CSS media query `@media (prefers-color-scheme: dark)` in `styles.css`
+- [x] T402 [P] [US4] Define CSS variables for light theme (--bg-color, --text-color, --card-bg, etc.)
+- [x] T403 [P] [US4] Define CSS variables for dark theme inside media query
+- [x] T404 [US4] Add settings button (gear icon ⚙️) to `index.html` (positioned top-right corner)
+- [x] T405 [US4] Add settings modal/dropdown to `index.html` (hidden by default)
+- [x] T406 [US4] Add theme selector to settings: Radio buttons for Light/Dark/System
+- [x] T407 [US4] Add QR error correction selector: Radio buttons for L/M/Q/H
+- [x] T408 [US4] Create `theme-manager.js` module with `setTheme(mode)` function
+- [x] T409 [US4] Implement `data-theme` attribute toggle on `<html>` element in `theme-manager.js`
+- [x] T410 [US4] Connect theme selector change event to `setTheme()` in `app.js`
+- [x] T411 [US4] Update `qr-generator.js` to accept `errorCorrectionLevel` parameter
+- [x] T412 [US4] Connect error correction selector to QR regeneration in `app.js`
+- [x] T413 [US4] Style settings modal in `styles.css` (popup overlay, radio buttons, labels)
 - [ ] T414 [US4] Ensure QR Quiet Zone maintains 4+ module white border in dark mode (test visually)
 
 **Checkpoint**: After T401-T414, theme and error correction should be adjustable via settings.
@@ -142,16 +142,16 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T501 [P] [US5] Add "Clear All" button to `index.html` (positioned prominently, distinct color)
-- [ ] T502 [US5] Implement `clearAll()` function in `app.js` that resets all state
-- [ ] T503 [US5] Clear textarea value (`textarea.value = ''`)
-- [ ] T504 [US5] Clear QR code container (`qrContainer.innerHTML = ''`)
-- [ ] T505 [US5] Reset character counter to "0 / 2000"
-- [ ] T506 [US5] Reset progress bar to 0%
-- [ ] T507 [US5] Hide all warning messages
-- [ ] T508 [US5] Verify no text in memory (add console assertion in dev mode: `console.assert(appState.textInput.value === '')`)
-- [ ] T509 [US5] Ensure response time < 16ms (measure with `performance.now()` in dev mode)
-- [ ] T510 [US5] Style Clear All button in `styles.css` (destructive action, red/orange, hover state)
+- [x] T501 [P] [US5] Add "Clear All" button to `index.html` (positioned prominently, distinct color)
+- [x] T502 [US5] Implement `clearAll()` function in `app.js` that resets all state
+- [x] T503 [US5] Clear textarea value (`textarea.value = ''`)
+- [x] T504 [US5] Clear QR code container (`qrContainer.innerHTML = ''`)
+- [x] T505 [US5] Reset character counter to "0 / 2000"
+- [x] T506 [US5] Reset progress bar to 0%
+- [x] T507 [US5] Hide all warning messages
+- [x] T508 [US5] Verify no text in memory (add console assertion in dev mode: `console.assert(appState.textInput.value === '')`)
+- [x] T509 [US5] Ensure response time < 16ms (measure with `performance.now()` in dev mode)
+- [x] T510 [US5] Style Clear All button in `styles.css` (destructive action, red/orange, hover state)
 
 **Checkpoint**: After T501-T510, Clear All should instantly wipe everything.
 
@@ -163,10 +163,10 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T601 [P] [CONST] Create `storage-manager.js` with `preventPersistence()` function
-- [ ] T602 [P] [CONST] Add localStorage/sessionStorage override to throw errors in dev mode (proxy pattern)
-- [ ] T603 [P] [CONST] Add `<meta http-equiv="Cache-Control" content="no-store">` to `index.html`
-- [ ] T604 [CONST] Call `preventPersistence()` at app startup in `app.js`
+- [x] T601 [P] [CONST] Create `storage-manager.js` with `preventPersistence()` function
+- [x] T602 [P] [CONST] Add localStorage/sessionStorage override to throw errors in dev mode (proxy pattern)
+- [x] T603 [P] [CONST] Add `<meta http-equiv="Cache-Control" content="no-store">` to `index.html`
+- [x] T604 [CONST] Call `preventPersistence()` at app startup in `app.js`
 - [ ] T605 [CONST] Verify zero network calls: Open DevTools Network tab → load app → type text → should show 0 requests
 - [ ] T606 [CONST] Verify zero storage: Open DevTools Application → Storage → all should be empty after using app
 - [ ] T607 [CONST] Verify QR generation < 100ms: Add `console.time('qr-gen')` before and `console.timeEnd('qr-gen')` after QR generation
@@ -184,14 +184,14 @@ description: "Task list for QR-Text Local-First implementation"
 
 ### Implementation Tasks
 
-- [ ] T701 [P] [POLISH] Handle empty text: Hide QR code when textarea is empty (no placeholder QR)
+- [x] T701 [P] [POLISH] Handle empty text: Hide QR code when textarea is empty (no placeholder QR)
 - [ ] T702 [P] [POLISH] Handle Unicode/emojis: Test with "Hello 👋 世界!" and verify QR encodes correctly
-- [ ] T703 [P] [POLISH] Add browser compatibility check: Show warning on IE11 or very old browsers
+- [x] T703 [P] [POLISH] Add browser compatibility check: Show warning on IE11 or very old browsers
 - [ ] T704 [P] [POLISH] Add responsive layout: Ensure app works on small screens (min 320px width)
 - [ ] T705 [P] [POLISH] Add loading indicator: Show brief spinner if QR generation takes > 50ms (for very long texts)
-- [ ] T706 [P] [POLISH] Add keyboard shortcuts: Ctrl+K or Cmd+K to clear all, Ctrl+S or Cmd+S to save
+- [x] T706 [P] [POLISH] Add keyboard shortcuts: Ctrl+K or Cmd+K to clear all, Ctrl+S or Cmd+S to save
 - [ ] T707 [P] [POLISH] Add accessibility: ARIA labels on buttons, semantic HTML, keyboard navigation
-- [ ] T708 [P] [POLISH] Add visual feedback: Briefly highlight Save button after successful download ("✓ Saved!")
+- [x] T708 [P] [POLISH] Add visual feedback: Briefly highlight Save button after successful download ("✓ Saved!")
 - [ ] T709 [P] [POLISH] Test offline mode: Open app → toggle DevTools Offline → reload → should still work
 - [ ] T710 [P] [POLISH] Add copy-to-clipboard fallback for Share on desktop (if share not supported)
 
@@ -213,7 +213,7 @@ description: "Task list for QR-Text Local-First implementation"
 - [ ] T806 [P] [TEST] Write Playwright test: "should respect dark mode preference" in `tests/e2e/dark-mode.spec.js`
 - [ ] T807 [P] [TEST] Configure Lighthouse CI in `.github/workflows/lighthouse.yml` to run on every PR
 - [ ] T808 [P] [TEST] Set Lighthouse assertions: Performance Score >= 95, TTI < 500ms
-- [ ] T809 [P] [DOC] Write `README.md` with project overview, features, and deployment instructions
+- [x] T809 [P] [DOC] Write `README.md` with project overview, features, and deployment instructions
 - [ ] T810 [P] [DOC] Add screenshots to `README.md` (light mode, dark mode, QR code example)
 
 **Checkpoint**: After T801-T810, CI/CD and documentation should be complete.
