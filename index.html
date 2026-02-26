@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Transformez du texte en QR code, localement et instantanement." />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <title>QR-Text Local-First</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="lib/qrcodegen.js"></script>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">◧</span>
+        <div>
+          <p class="brand-title">QR-Text Local-First</p>
+          <p class="brand-subtitle">Texte vers QR code en un clin d'oeil.</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-shell" id="app">
+      <section class="card" id="editor-card">
+        <div class="card-header">
+          <div class="card-title">
+            <h1>Transferez votre texte au mobile</h1>
+            <p>Collez, ajustez, scannez. Aucune donnees conservees.</p>
+          </div>
+          <button class="icon-button" id="settings-button" type="button" aria-label="Parametres">
+            ⚙️
+          </button>
+        </div>
+        <div class="settings-panel" id="settings-panel" hidden>
+          <div class="settings-group">
+            <p class="settings-title">Theme</p>
+            <label class="settings-option">
+              <input type="radio" name="theme" value="system" checked />
+              Systeme
+            </label>
+            <label class="settings-option">
+              <input type="radio" name="theme" value="light" />
+              Clair
+            </label>
+            <label class="settings-option">
+              <input type="radio" name="theme" value="dark" />
+              Sombre
+            </label>
+          </div>
+          <div class="settings-group">
+            <p class="settings-title">Correction QR</p>
+            <label class="settings-option">
+              <input type="radio" name="error-correction" value="L" />
+              L (7%)
+            </label>
+            <label class="settings-option">
+              <input type="radio" name="error-correction" value="M" checked />
+              M (15%)
+            </label>
+            <label class="settings-option">
+              <input type="radio" name="error-correction" value="Q" />
+              Q (25%)
+            </label>
+            <label class="settings-option">
+              <input type="radio" name="error-correction" value="H" />
+              H (30%)
+            </label>
+          </div>
+        </div>
+        <div class="card-body" id="editor-body">
+          <div class="editor-stack">
+            <label class="sr-only" for="text-input">Texte a encoder</label>
+            <textarea
+              id="text-input"
+              name="text-input"
+              placeholder="Collez votre texte ici..."
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              autofocus
+              rows="6"
+            ></textarea>
+            <div class="editor-meta">
+              <span id="counter" class="counter">0 / 2000</span>
+              <div class="progress-track" aria-hidden="true">
+                <div class="progress-bar" id="progress-bar"></div>
+              </div>
+            </div>
+            <div class="warning" id="warning" role="status" aria-live="polite" hidden></div>
+          </div>
+          <div class="qr-panel" id="qr-panel">
+            <div class="qr-shell">
+              <div id="qr-container" class="qr-container" aria-live="polite"></div>
+            </div>
+            <div class="action-row">
+              <button id="save-button" class="button button--primary" type="button">
+                Save Image
+              </button>
+              <button id="share-button" class="button button--ghost" type="button">
+                Share
+              </button>
+              <button id="clear-button" class="button button--danger" type="button">
+                Clear All
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Local, rapide, sans suivi.</p>
+    </footer>
+  </body>
+</html>

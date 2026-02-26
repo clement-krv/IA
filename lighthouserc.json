@@ -1,0 +1,28 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 3,
+      "startServerCommand": "npx http-server -p 8080",
+      "startServerReadyPattern": "Available on:",
+      "url": ["http://localhost:8080/"],
+      "settings": {
+        "onlyCategories": ["performance"],
+        "throttling": {
+          "cpuSlowdownMultiplier": 4,
+          "throughputKbps": 1600,
+          "requestLatencyMs": 150
+        }
+      }
+    },
+    "assert": {
+      "assertions": {
+        "categories:performance": ["warn", { "minScore": 0.85 }],
+        "interactive": ["warn", { "maxNumericValue": 2000 }],
+        "first-contentful-paint": ["warn", { "maxNumericValue": 2000 }]
+      }
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
