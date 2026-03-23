@@ -16,6 +16,14 @@ Contract d'interface entre les interactions utilisateur (textarea + dropdown) et
 - Type: single-select
 - Events: `change`
 
+### Transformation Hint
+- Element: `#transformation-hint`
+- Purpose: informer l'utilisateur quand les modes hash sont indisponibles
+
+### Transformation Status
+- Element: `#transformation-status`
+- Purpose: message runtime (synchronisation, fallback mode inconnu, erreurs)
+
 #### Allowed option IDs
 - `none`
 - `base64_utf8`

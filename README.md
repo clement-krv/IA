@@ -93,12 +93,20 @@ npm run clean            # Supprime .lighthouseci/ et dist/
 ## 🎯 Utilisation
 
 1. **Saisir du texte** : Tapez ou collez votre texte dans la zone de texte
-2. **QR généré automatiquement** : Le code QR apparaît en temps réel
-3. **Suivre la progression** : Le compteur et la barre de progression vous indiquent la capacité
-4. **Ajuster les paramètres** : Cliquez sur ⚙️ pour changer le thème ou la correction d'erreur
-5. **Sauvegarder** : Bouton "Save Image" pour télécharger le PNG
-6. **Partager** : Bouton "Share" (mobile) pour partage natif
-7. **Effacer** : Bouton "Clear All" pour tout réinitialiser
+2. **Choisir la transformation** : Sélectionnez un mode dans le menu (Aucune, 3 encodages, 3 hash)
+3. **Vérifier le résultat transformé** : La valeur finale affichée sous le menu est celle injectée dans le QR
+4. **QR généré automatiquement** : Le code QR apparaît en temps réel à partir du résultat transformé
+5. **Suivre la progression** : Le compteur et la barre de progression vous indiquent la capacité
+6. **Ajuster les paramètres** : Cliquez sur ⚙️ pour changer le thème ou la correction d'erreur
+7. **Sauvegarder** : Bouton "Save Image" pour télécharger le PNG
+8. **Partager** : Bouton "Share" (mobile) pour partage natif
+9. **Effacer** : Bouton "Clear All" pour tout réinitialiser
+
+### Modes de transformation
+
+- **Aucune transformation** : Le QR contient exactement le texte saisi
+- **Encodage** : `Base64 (UTF-8)`, `URL Percent-Encode`, `Hex (UTF-8 bytes)`
+- **Hash** : `SHA-256`, `SHA-384`, `SHA-512` (désactivés automatiquement si Web Crypto indisponible)
 
 ### Limites de texte
 

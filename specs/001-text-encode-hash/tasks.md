@@ -7,9 +7,9 @@
 
 **Purpose**: Prepare feature scaffolding and shared constants
 
-- [ ] T001 Create transformation mode constants in transformation-modes.js
-- [ ] T002 [P] Add transformation UI placeholders in index.html
-- [ ] T003 [P] Add base styling slots for dropdown and result block in styles.css
+- [X] T001 Create transformation mode constants in transformation-modes.js
+- [X] T002 [P] Add transformation UI placeholders in index.html
+- [X] T003 [P] Add base styling slots for dropdown and result block in styles.css
 
 ---
 
@@ -19,12 +19,12 @@
 
 **CRITICAL**: No user story work starts before this phase is complete
 
-- [ ] T004 Implement mode registry and validation helpers in transformation-modes.js
-- [ ] T005 Implement encode transforms (base64_utf8, url_percent, hex_utf8) in text-transformer.js
-- [ ] T006 Implement hash transforms (sha256_hex, sha384_hex, sha512_hex) using Web Crypto in text-transformer.js
-- [ ] T007 Implement shared applyTransformation(text, modeId) with safe fallback none in text-transformer.js
-- [ ] T008 Integrate async-safe transformation state flow in app.js
-- [ ] T009 Add Web Crypto capability detection and hash-option availability mapping in app.js
+- [X] T004 Implement mode registry and validation helpers in transformation-modes.js
+- [X] T005 Implement encode transforms (base64_utf8, url_percent, hex_utf8) in text-transformer.js
+- [X] T006 Implement hash transforms (sha256_hex, sha384_hex, sha512_hex) using Web Crypto in text-transformer.js
+- [X] T007 Implement shared applyTransformation(text, modeId) with safe fallback none in text-transformer.js
+- [X] T008 Integrate async-safe transformation state flow in app.js
+- [X] T009 Add Web Crypto capability detection and hash-option availability mapping in app.js
 
 **Checkpoint**: Foundation complete, user stories can be implemented and tested independently
 
@@ -36,12 +36,12 @@
 
 **Independent Test**: Enter text, select an encode mode then a hash mode, verify displayed result equals QR payload in both cases
 
-- [ ] T010 [P] [US1] Add transformation mode dropdown options (3 encode + 3 hash) in index.html
-- [ ] T011 [US1] Add transformation result output container under dropdown in index.html
-- [ ] T012 [US1] Wire dropdown change events to transformation pipeline in app.js
-- [ ] T013 [P] [US1] Render transformed result text in transformation result container in app.js
-- [ ] T014 [US1] Update QR render input to always use transformed result in app.js
-- [ ] T015 [US1] Handle async race conditions so only latest text+mode result is rendered in app.js
+- [X] T010 [P] [US1] Add transformation mode dropdown options (3 encode + 3 hash) in index.html
+- [X] T011 [US1] Add transformation result output container under dropdown in index.html
+- [X] T012 [US1] Wire dropdown change events to transformation pipeline in app.js
+- [X] T013 [P] [US1] Render transformed result text in transformation result container in app.js
+- [X] T014 [US1] Update QR render input to always use transformed result in app.js
+- [X] T015 [US1] Handle async race conditions so only latest text+mode result is rendered in app.js
 
 **Checkpoint**: US1 fully functional and independently testable
 
@@ -53,10 +53,10 @@
 
 **Independent Test**: Select none mode, generate QR, verify result text equals original input exactly
 
-- [ ] T016 [US2] Add explicit none option as default selected value in index.html
-- [ ] T017 [P] [US2] Implement none mode behavior to return source text unchanged in text-transformer.js
-- [ ] T018 [P] [US2] Ensure empty input handling keeps result/QR cleared with user feedback in app.js
-- [ ] T019 [US2] Preserve existing save/share/clear behavior with none mode flow in app.js
+- [X] T016 [US2] Add explicit none option as default selected value in index.html
+- [X] T017 [P] [US2] Implement none mode behavior to return source text unchanged in text-transformer.js
+- [X] T018 [P] [US2] Ensure empty input handling keeps result/QR cleared with user feedback in app.js
+- [X] T019 [US2] Preserve existing save/share/clear behavior with none mode flow in app.js
 
 **Checkpoint**: US2 functional independently and does not regress baseline behavior
 
@@ -68,10 +68,10 @@
 
 **Independent Test**: Open dropdown and verify 7 options (3 encode, 3 hash, 1 none) are visible and selectable with clear labels
 
-- [ ] T020 [US3] Add grouped and user-friendly labels for mode options in index.html
-- [ ] T021 [P] [US3] Add disabled state and helper message when hash is unavailable in app.js
-- [ ] T022 [P] [US3] Add visual styles for result states (none, encoded, hashed, error) in styles.css
-- [ ] T023 [US3] Add unknown mode fallback to none with visible status message in app.js
+- [X] T020 [US3] Add grouped and user-friendly labels for mode options in index.html
+- [X] T021 [P] [US3] Add disabled state and helper message when hash is unavailable in app.js
+- [X] T022 [P] [US3] Add visual styles for result states (none, encoded, hashed, error) in styles.css
+- [X] T023 [US3] Add unknown mode fallback to none with visible status message in app.js
 
 **Checkpoint**: US3 functional independently with clear and robust UX
 
@@ -81,11 +81,11 @@
 
 **Purpose**: Final consistency, performance, and documentation updates
 
-- [ ] T024 [P] Update quick usage section for transformation modes in README.md
-- [ ] T025 Verify quickstart scenario steps for encode/hash/none in specs/001-text-encode-hash/quickstart.md
-- [ ] T026 Add manual validation checklist for transformed-result-equals-qr in specs/001-text-encode-hash/quickstart.md
-- [ ] T027 Run build and smoke commands documented in package.json
-- [ ] T028 [P] Update feature contract notes with final UI identifiers in specs/001-text-encode-hash/contracts/transformation-ui-contract.md
+- [X] T024 [P] Update quick usage section for transformation modes in README.md
+- [X] T025 Verify quickstart scenario steps for encode/hash/none in specs/001-text-encode-hash/quickstart.md
+- [X] T026 Add manual validation checklist for transformed-result-equals-qr in specs/001-text-encode-hash/quickstart.md
+- [X] T027 Run build and smoke commands documented in package.json
+- [X] T028 [P] Update feature contract notes with final UI identifiers in specs/001-text-encode-hash/contracts/transformation-ui-contract.md
 
 ---
 

@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "npx http-server -p 8000",
-    "build": "npm run build:clean && npm run build:html && npm run build:css && npm run build:js",
+    "build": "npm run build:clean && npm run build:html && npm run build:css && npm run build:js && npm run build:assets",
     "build:clean": "rimraf dist && node -e \"require('fs').mkdirSync('dist', { recursive: true })\"",
     "build:html": "html-minifier-terser --collapse-whitespace --remove-comments --minify-css true --minify-js true index.html -o dist/index.html",
     "build:css": "cleancss -o dist/styles.css styles.css",
-    "build:js": "terser app.js qr-generator.js theme-manager.js storage-manager.js share-handler.js lib/qrcodegen.js -c -m -o dist/app.js",
+    "build:js": "esbuild app.js --bundle --minify --format=esm --outfile=dist/app.js",
+    "build:assets": "node -e \"require('fs').mkdirSync('dist/lib', { recursive: true }); require('fs').copyFileSync('lib/qrcodegen.js', 'dist/lib/qrcodegen.js')\"",
     "test:e2e": "playwright test",
     "lhci": "lhci autorun --config=lighthouserc.json"
   },
@@ -17,6 +18,7 @@
     "@lhci/cli": "^0.13.0",
     "@playwright/test": "^1.50.0",
     "clean-css-cli": "^5.6.3",
+    "esbuild": "^0.25.10",
     "html-minifier-terser": "^7.2.0",
     "rimraf": "^5.0.5",
     "terser": "^5.30.3"

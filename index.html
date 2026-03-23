@@ -81,6 +81,28 @@
               autofocus
               rows="6"
             ></textarea>
+            <div class="transform-controls">
+              <label for="transformation-mode" class="transform-label">Transformation du texte</label>
+              <select id="transformation-mode" name="transformation-mode" class="transform-select">
+                <option value="none" selected>Aucune transformation</option>
+                <optgroup label="Encodage">
+                  <option value="base64_utf8">Base64 (UTF-8)</option>
+                  <option value="url_percent">URL Percent-Encode</option>
+                  <option value="hex_utf8">Hex (UTF-8 bytes)</option>
+                </optgroup>
+                <optgroup label="Hash">
+                  <option value="sha256_hex">SHA-256</option>
+                  <option value="sha384_hex">SHA-384</option>
+                  <option value="sha512_hex">SHA-512</option>
+                </optgroup>
+              </select>
+              <p id="transformation-hint" class="transform-hint" role="status" aria-live="polite" hidden></p>
+              <div class="transform-result-block">
+                <p class="transform-result-label">Resultat transforme</p>
+                <output id="transformation-result" class="transform-result transform-result--none"></output>
+                <p id="transformation-status" class="transform-status" aria-live="polite"></p>
+              </div>
+            </div>
             <div class="editor-meta">
               <span id="counter" class="counter">0 / 2000</span>
               <div class="progress-track" aria-hidden="true">

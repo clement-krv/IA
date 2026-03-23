@@ -39,6 +39,16 @@ Ouvrir `http://localhost:8000`.
 - Changement rapide de mode: resultat et QR toujours synchronises.
 - Texte long: UI reste reactive, warning existant conserve.
 
+## Checklist manuelle: resultat affiche = payload QR
+
+- [ ] Mode `none`: le texte visible dans `#transformation-result` est identique au texte scanne du QR.
+- [ ] Mode `base64_utf8`: la chaine visible est identique au texte scanne du QR.
+- [ ] Mode `url_percent`: la chaine visible est identique au texte scanne du QR.
+- [ ] Mode `hex_utf8`: la chaine visible est identique au texte scanne du QR.
+- [ ] Mode `sha256_hex`: la chaine visible est identique au texte scanne du QR.
+- [ ] Mode `sha384_hex`: la chaine visible est identique au texte scanne du QR.
+- [ ] Mode `sha512_hex`: la chaine visible est identique au texte scanne du QR.
+
 ## Tests automatises recommandes
 
 ```bash
