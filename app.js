@@ -2,12 +2,18 @@ import { generateQR } from './qr-generator.js';
 import { isShareSupported, saveImage, shareImage } from './share-handler.js';
 import { setTheme } from './theme-manager.js';
 import { preventPersistence } from './storage-manager.js';
+import { applyTransformation, canUseHashTransforms, isModeSupported } from './text-transformer.js';
+import { MODE_IDS, getModeById, validateModeId } from './transformation-modes.js';
 
 const textInput = document.getElementById('text-input');
 const qrContainer = document.getElementById('qr-container');
 const counter = document.getElementById('counter');
 const progressBar = document.getElementById('progress-bar');
 const warning = document.getElementById('warning');
+const transformationMode = document.getElementById('transformation-mode');
+const transformationHint = document.getElementById('transformation-hint');
+const transformationResult = document.getElementById('transformation-result');
+const transformationStatus = document.getElementById('transformation-status');
 const saveButton = document.getElementById('save-button');
 const shareButton = document.getElementById('share-button');
 const clearButton = document.getElementById('clear-button');
@@ -23,6 +29,9 @@ const shareSupported = isShareSupported();
 
 const state = {
   errorCorrectionLevel: 'M',
+  transformationModeId: MODE_IDS.NONE,
+  transformationRequestId: 0,
+  hashEnabled: canUseHashTransforms(),
 };
 
 preventPersistence({ dev: isDev });
@@ -94,6 +103,61 @@ const updateActionButtons = (hasContent) => {
   clearButton.classList.toggle('is-disabled', !hasContent);
 };
 
+const setTransformationResult = (value, resultKind) => {
+  transformationResult.textContent = value;
+  transformationResult.classList.remove(
+    'transform-result--none',
+    'transform-result--encoded',
+    'transform-result--hashed',
+    'transform-result--error'
+  );
+
+  if (resultKind === 'encoded') {
+    transformationResult.classList.add('transform-result--encoded');
+    return;
+  }
+
+  if (resultKind === 'hashed') {
+    transformationResult.classList.add('transform-result--hashed');
+    return;
+  }
+
+  if (resultKind === 'error') {
+    transformationResult.classList.add('transform-result--error');
+    return;
+  }
+
+  transformationResult.classList.add('transform-result--none');
+};
+
+const setTransformationStatus = (message) => {
+  transformationStatus.textContent = message;
+};
+
+const renderTransformationModeAvailability = () => {
+  const options = Array.from(transformationMode.options);
+
+  options.forEach((option) => {
+    if (option.value.startsWith('sha')) {
+      option.disabled = !state.hashEnabled;
+    }
+  });
+
+  if (!state.hashEnabled) {
+    transformationHint.hidden = false;
+    transformationHint.textContent = 'Hash indisponible sur ce navigateur. Les modes SHA sont desactives.';
+
+    if (transformationMode.value.startsWith('sha')) {
+      transformationMode.value = MODE_IDS.NONE;
+      state.transformationModeId = MODE_IDS.NONE;
+    }
+    return;
+  }
+
+  transformationHint.hidden = true;
+  transformationHint.textContent = '';
+};
+
 const renderQr = (text) => {
   if (!text) {
     qrContainer.innerHTML = '';
@@ -110,13 +174,76 @@ const renderQr = (text) => {
   updateActionButtons(true);
 };
 
-const handleInput = debounce((event) => {
+const getResultKind = (modeId) => {
+  const mode = getModeById(modeId);
+
+  if (mode.category === 'encode') {
+    return 'encoded';
+  }
+
+  if (mode.category === 'hash') {
+    return 'hashed';
+  }
+
+  return 'none';
+};
+
+const applyAndRenderTransformation = async (sourceText) => {
+  const nextRequestId = state.transformationRequestId + 1;
+  state.transformationRequestId = nextRequestId;
+
+  if (!sourceText) {
+    setTransformationResult('', 'none');
+    setTransformationStatus('Aucun resultat: saisissez un texte.');
+    renderQr('');
+    return;
+  }
+
+  const safeModeId = validateModeId(state.transformationModeId);
+  if (safeModeId !== state.transformationModeId) {
+    state.transformationModeId = MODE_IDS.NONE;
+    transformationMode.value = MODE_IDS.NONE;
+    setTransformationStatus('Mode inconnu detecte, retour sur Aucune transformation.');
+  }
+
+  if (!isModeSupported(state.transformationModeId)) {
+    state.transformationModeId = MODE_IDS.NONE;
+    transformationMode.value = MODE_IDS.NONE;
+    setTransformationStatus('Mode non supporte, retour sur Aucune transformation.');
+  }
+
+  try {
+    const transformed = await applyTransformation(sourceText, state.transformationModeId);
+
+    if (state.transformationRequestId !== nextRequestId) {
+      return;
+    }
+
+    setTransformationResult(transformed, getResultKind(state.transformationModeId));
+    setTransformationStatus('Resultat synchronise avec le QR.');
+    renderQr(transformed);
+  } catch (error) {
+    if (state.transformationRequestId !== nextRequestId) {
+      return;
+    }
+
+    setTransformationResult('', 'error');
+    setTransformationStatus('Erreur de transformation.');
+    renderQr('');
+
+    if (isDev) {
+      console.error(error);
+    }
+  }
+};
+
+const handleInput = debounce(async (event) => {
   const value = event.target.value;
   const length = value.length;
   updateCounter(length);
   updateProgressBar(length);
   updateWarning(length);
-  renderQr(value);
+  await applyAndRenderTransformation(value);
 }, 50);
 
 const getQrSvg = () => qrContainer.querySelector('svg');
@@ -125,6 +252,8 @@ const clearAll = () => {
   const start = performance.now();
   textInput.value = '';
   qrContainer.innerHTML = '';
+  setTransformationResult('', 'none');
+  setTransformationStatus('');
   updateCounter(0);
   updateProgressBar(0);
   updateWarning(0);
@@ -246,8 +375,14 @@ eccInputs.forEach((input) => {
       return;
     }
     state.errorCorrectionLevel = input.value;
-    renderQr(textInput.value);
+    void applyAndRenderTransformation(textInput.value);
   });
+});
+
+transformationMode.addEventListener('change', () => {
+  state.transformationModeId = validateModeId(transformationMode.value);
+  transformationMode.value = state.transformationModeId;
+  void applyAndRenderTransformation(textInput.value);
 });
 
 setTheme('system');
@@ -256,6 +391,9 @@ updateCounter(0);
 updateProgressBar(0);
 updateWarning(0);
 updateActionButtons(false);
+setTransformationResult('', 'none');
+setTransformationStatus('');
+renderTransformationModeAvailability();
 
 // Check browser compatibility on startup
 checkBrowserCompatibility();
